@@ -10,4 +10,4 @@ At the end of the quiz the program should output the total number of questions c
 
 First build the go file using ```go build```.
 
-Then run using the default ```problems.csv``` by going ```./quiz```. Or specify a specific .csv file to run by including a flag like so: ```./quiz -f "asdf.csv"```.
+Then run using the default ```problems.csv``` by going ```./quiz```. Or specify the program to run a .csv file to run by including a flag like so: ```./quiz -f "asdf.csv"```.
