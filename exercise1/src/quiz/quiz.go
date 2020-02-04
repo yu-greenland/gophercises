@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/csv"
+	"flag"
 	"fmt"
 	"io"
 	"log"
@@ -9,15 +10,23 @@ import (
 )
 
 func main() {
+	flag.Parse()
+
 	// initialise variables
 	count := 0
 	correct := 0
 
 	// Open the file
-	csvfile, err := os.Open("problems.csv")
+	csvfile, err := os.Open(file_name)
+	// if error, default to problems.csv
 	if err != nil {
-		log.Fatalln("Couldn't open the csv file", err)
+		csvfile, err = os.Open("problems.csv")
+		if err != nil {
+			log.Fatalln("Couldn't open the csv file", err)
+		}
 	}
+
+	fmt.Printf("Opened: " + csvfile.Name() + "\n")
 
 	// Parse the file
 	csv_file := csv.NewReader(csvfile)
@@ -49,4 +58,10 @@ func main() {
 		}
 		count = count + 1
 	}
+}
+
+var file_name string
+
+func init() {
+	flag.StringVar(&file_name, "f", "problems.csv", "specify filename")
 }
